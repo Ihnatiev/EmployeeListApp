@@ -1,0 +1,27 @@
+<mat-card>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Employee</h4>
+  </div>
+  <form (submit)="onSaveEmp(empForm)" #empForm="ngForm">
+    <div>
+      <mat-form-field>
+        <input matInput name="empName" ngModel type="name" placeholder="Employee name" #empName="ngModel" required>
+        <mat-error *ngIf="empName.invalid">Please enter employee name.</mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-checkbox name="isActive" [checked]="true" [(ngModel)]="isActive">
+        <label>is Active</label>
+      </mat-checkbox>
+    </div>
+    <mat-form-field>
+      <mat-label>Department</mat-label>
+      <mat-select name="empDepartment" [(ngModel)]="empDepartment" required>
+        <mat-option *ngFor="let option of empDep" [value]="option.id">{{option.dpName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="accent" class="buttonSave" type="submit">Save Employee</button>
+    <button mat-raised-button color="warn" routerLink="/">Cancel</button>
+  </form>
+</mat-card>
+

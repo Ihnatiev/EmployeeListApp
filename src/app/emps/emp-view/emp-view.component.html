@@ -1,0 +1,14 @@
+<mat-card>
+  <div>
+    <h4 class="modal-title pull-center">Employee Info</h4>
+  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let emp of employees">
+      <h1 matLine>Name: {{emp.empName}}</h1>
+      <h1 matLine>ID: {{emp.empID}}</h1>
+      <h1 matLine>isActive: {{emp.empActive}}</h1>
+      <h1 matLine>Department: {{emp.empDepartment}}</h1>
+    </mat-list-item>
+  </mat-list>
+    <button mat-raised-button color="warn" routerLink="/">Cancel</button>
+</mat-card>

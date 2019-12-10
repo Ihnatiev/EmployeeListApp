@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+mat-card {
+  height: 280px;
+  width: 300px;
+  margin: auto;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+.buttonSave {
+  margin-right: 6rem;
+}

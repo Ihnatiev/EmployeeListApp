@@ -1,0 +1,411 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger EmployeeList"
+  },
+  "host": "localhost:4201",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "employees",
+      "description": "Everything about employee"
+    },
+    {
+      "name": "user",
+      "description": "Everything about user"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "oauth2": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey"
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/employees": {
+      "get": {
+        "tags": [
+          "employees"
+        ],
+        "summary": "Returns a list of employees",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pagesize",
+            "type": "integer",
+            "required": true,
+            "description": "Quantity of employees on the one page"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "required": true,
+            "description": "On what page (numbering starts from 0)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Employees not found"
+          }
+        }
+      }
+    },
+    "/employees/": {
+      "post": {
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "tags": [
+          "employees"
+        ],
+        "summary": "Add a new employee to the list",
+        "operationId": "createEmployee",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Employee object that needs to be added to the list",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "empName": {
+                  "type": "string"
+                },
+                "empActive": {
+                  "type": "boolean"
+                },
+                "empDepartment": {
+                  "type": "integer"
+                }
+              },
+              "example": {
+                "empName": "Uncle Bob",
+                "empActive": true,
+                "empDepartment": 1
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "You are not authenticated"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/employees/{empID}": {
+      "get": {
+        "tags": [
+          "employees"
+        ],
+        "summary": "Find employee by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "empID",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Employee not found"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "tags": [
+          "employees"
+        ],
+        "summary": "Update an existing employee",
+        "operationId": "updateEmployee",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "empID",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Employee object that needs to be updated in the list",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "empName": {
+                  "type": "string"
+                },
+                "empActive": {
+                  "type": "boolean"
+                },
+                "empDepartment": {
+                  "type": "integer"
+                }
+              },
+              "example": {
+                "empName": "Uncle Bob",
+                "empActive": true,
+                "empDepartment": 1
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "tags": [
+          "employees"
+        ],
+        "summary": "Deletes an employee",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "empID",
+            "type": "integer",
+            "required": true,
+            "description": "Numeric ID of the employee."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Employee not found"
+          }
+        }
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Create user",
+        "operationId": "createUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "name": "Uncle Bob",
+                "email": "bob@test.com",
+                "password": "test1234"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created!"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "This email already exists!"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "LogIn user",
+        "description": "User login",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "email": "bob@test.com",
+                "password": "test1234"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Auth failed! Check your email."
+          },
+          "401": {
+            "description": "Email and password does not match."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "username",
+        "email",
+        "password"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Employee": {
+      "type": "object",
+      "required": [
+        "name",
+        "active",
+        "department"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "department": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "creator": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "title": "new-user",
+  "description": "describes properties required to create a user",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "name"
+    },
+    "email": {
+      "type": "string",
+      "description": "email"
+    },
+    "password": {
+      "type": "string",
+      "description": "password"
+    }
+  },
+  "required": ["name", "email", "password"]
+}

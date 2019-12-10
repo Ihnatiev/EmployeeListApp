@@ -1,0 +1,54 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<form class="parent" (submit)="onSearch(searchForm)" #searchForm="ngForm">
+  <mat-form-field>
+    <input matInput name="search" type="search" placeholder="Search by employee name" [(ngModel)]="empNameInput">
+  </mat-form-field>
+  <button mat-button color="primary" type="submit">Search</button>
+</form>
+<div class="my-container mat-elevation-z8">
+  <table mat-table [dataSource]="employees |filter:search">
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let emp">
+        <button mat-button color="primary" (click)="onView(emp.empID)"
+          [routerLink]="['/details', emp.empID]">VIEW</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let emp">
+        <a *ngIf="userIsAuthenticated && userId == emp.creator" mat-button color="accent"
+          [routerLink]="['/edit', emp.empID]">EDIT</a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.empID}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.empName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Active">
+      <th mat-header-cell *matHeaderCellDef> Active </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.empActive}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Department">
+      <th mat-header-cell *matHeaderCellDef> Department </th>
+      <td mat-cell *matCellDef="let emp"> {{emp.empDepartment}} </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let emp">
+        <button *ngIf="userIsAuthenticated && userId == emp.creator" mat-button color="warn"
+          (click)="onDelete(emp.empID)">DELETE</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <p class="info-text mat-body-1" *ngIf="employees.length <= 0 && !isLoading">No employees added yet!</p>
+  <mat-paginator [length]="totalEmployees" [pageSize]="empsPerPage" [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangedPage($event)">
+  </mat-paginator>
+</div>
