@@ -1,0 +1,18 @@
+{
+    "title": "emp-all",
+    "description": "describes properties required to get all employees with pagination",
+    "properties": {
+        "pagesize": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "page": {
+            "type": "integer",
+            "minimum": 0
+        }
+    },
+    "required": [
+        "pagesize",
+        "page"
+    ]
+}

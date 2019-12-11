@@ -1,0 +1,16 @@
+{
+    "title": "user-login",
+    "description": "describes properties required to login the user",
+    "type": "object",
+    "properties": {
+        "email": {
+            "type": "string",
+            "description": "email"
+        },
+        "password": {
+            "type": "string",
+            "description": "password"
+        }
+    },
+    "required": ["email", "password"]
+}
