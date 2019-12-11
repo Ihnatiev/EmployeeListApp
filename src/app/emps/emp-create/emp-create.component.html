@@ -16,12 +16,12 @@
     </div>
     <mat-form-field>
       <mat-label>Department</mat-label>
-      <mat-select name="empDepartment" [(ngModel)]="empDepartment" required>
+      <mat-select name="empDepartment" [ngModel] matInput #empDepartment="ngModel" required>
         <mat-option *ngFor="let option of empDep" [value]="option.id">{{option.dpName}}</mat-option>
       </mat-select>
+      <mat-error *ngIf="empDepartment.invalid">Please choose a department</mat-error>
     </mat-form-field>
     <button mat-raised-button color="accent" class="buttonSave" type="submit">Save Employee</button>
     <button mat-raised-button color="warn" routerLink="/">Cancel</button>
   </form>
 </mat-card>
-
