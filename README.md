@@ -1,6 +1,6 @@
 # EmployeeListApp
  
-EmployeeListApp built with NodeJS, MySQL and Angular.
+EmployeeListApp built with NodeJS, Swagger, MySQL and Angular.
 
 Node provides the RESTful API. Angular provides the frontend and accesses the API. MySQL stores like a hoarder.
 
