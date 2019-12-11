@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --ssl --ssl-key d:\\config\\key.pem  --ssl-cert d:\\config\\cert.pem",
+    "start": "ng serve --ssl --ssl-key ./src/config/key.pem  --ssl-cert ./src/config/cert.pem",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "serve": "concurrently \"ng serve\" \"server/node_modules/.bin/ts-node-dev server/server.ts\""
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
