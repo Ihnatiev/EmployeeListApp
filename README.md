@@ -22,3 +22,6 @@ Run `npm run start` for a production server of backend. Start the server in back
 
 Run `npm run test` to execute the unit tests via [Jest]
 
+## Running swagger UI
+
+Navigate to `https://localhost:4201/api-docs/`
