@@ -56,12 +56,18 @@ export class EmpCreateComponent implements OnInit, OnDestroy {
 
   onSaveEmp(form: NgForm) {
     if (this.mode === 'create') {
+      if (form.invalid) {
+        return;
+      }
       this.employeesService.addEmployee(
         form.value.empName,
         form.value.isActive,
         form.value.empDepartment
       );
     } else {
+      if (form.invalid) {
+        return;
+      }
       this.employeesService.updateEmployee(
         this.employeeId,
         form.value.empName,
