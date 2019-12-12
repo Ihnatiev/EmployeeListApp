@@ -55,7 +55,7 @@ export default [
   {
     path: "/api/employees/:empID",
     method: "put",
-    handler: [validEmpId('emp-id'), validateBody('emp-create'), checkJwt,
+    handler: [validateBody('emp-create'), checkJwt,
     async (req: Request, res: Response) => {
       await employeesController.updateEmployee(req, res);
     }]
