@@ -265,7 +265,7 @@
         "parameters": [
           {
             "in": "body",
-            "name": "body",
+            "name": "user",
             "description": "User object",
             "required": true,
             "schema": {
