@@ -34,4 +34,5 @@ const srvr = https.createServer(httpsOptions, app);
 srvr.listen(PORT, () =>
   console.log(`Server is running https://localhost:${PORT}`)
 );
+
 export default srvr;
