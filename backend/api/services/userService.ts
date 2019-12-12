@@ -1,7 +1,7 @@
 import { User } from '../models/userModel';
 import { IDBConnection } from '../config/IDBConnection';
 import { v4 as uuid } from 'uuid';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export class UserService {
   private connection: any;
