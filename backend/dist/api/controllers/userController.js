@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const userService_1 = require("../services/userService");
 const secret_1 = __importDefault(require("../config/secret"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 class UserController {
     constructor(dbConnection) {
         this.userService = new userService_1.UserService(dbConnection);
@@ -61,7 +61,7 @@ class UserController {
                     });
                 }
                 else {
-                    const result = yield bcrypt_1.default.compare(password, user.password);
+                    const result = yield bcryptjs_1.default.compare(password, user.password);
                     const token = jsonwebtoken_1.default.sign({ userId: user.id, email: user.email }, secret_1.default.jwtSecret, { algorithm: 'HS256', expiresIn: '1h' });
                     (!result) ?
                         res.status(401).json({
