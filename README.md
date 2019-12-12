@@ -1,6 +1,6 @@
 # EmployeeListApp
  
-EmployeeListApp built with NodeJS, Swagger, MySQL and Angular.
+EmployeeListApp built with NodeJS, TypeScript, MySQL, Swagger and Angular.
 
 Node provides the RESTful API. Angular provides the frontend and accesses the API. MySQL stores like a hoarder.
 
@@ -11,8 +11,17 @@ Node provides the RESTful API. Angular provides the frontend and accesses the AP
 1. Clone the repository
 2. Install node packages in root for angular: npm install
 3. Install node packages in backend directory for REST API: npm install
-4. Start the server in backend directory: npm run start
-5. Start the Angular application in root directory: npm run start
-6. View in browser at https://localhost:4200
-7. Run test: npm run test
 
+## Servers start
+
+Run `npm run start` for a dev server of frontend. Navigate to `https://localhost:4200/`. 
+
+Run `npm run start` for a production server of backend. Start the server in backend directory.
+
+## Running unit and integration tests
+
+Run `npm run test` to execute the unit tests via [Jest]
+
+## Running swagger UI
+
+Navigate to `https://localhost:4201/api-docs/`
