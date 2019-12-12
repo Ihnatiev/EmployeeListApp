@@ -2,7 +2,7 @@ import { UserService } from '../services/userService';
 import { IDBConnection } from '../config/IDBConnection';
 import secret from '../config/secret';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 export class UserController {
   private userService: UserService;
