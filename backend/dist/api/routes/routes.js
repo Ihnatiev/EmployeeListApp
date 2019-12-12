@@ -62,7 +62,7 @@ exports.default = [
     {
         path: "/api/employees/:empID",
         method: "put",
-        handler: [valid_1.validEmpId('emp-id'), valid_1.validateBody('emp-create'), check_auth_1.checkJwt,
+        handler: [valid_1.validateBody('emp-create'), check_auth_1.checkJwt,
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 yield employeesController.updateEmployee(req, res);
             })]
