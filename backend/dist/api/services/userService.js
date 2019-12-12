@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const userModel_1 = require("../models/userModel");
 const uuid_1 = require("uuid");
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 class UserService {
     constructor(connection) {
         this.connection = connection;
@@ -26,7 +26,7 @@ class UserService {
             user.id = uuid_1.v4();
             user.name = name;
             user.email = email;
-            user.password = bcrypt_1.default.hashSync(password, 10);
+            user.password = bcryptjs_1.default.hashSync(password, 10);
             yield this.connection.execute('INSERT INTO EmployeeDB.Users SET id = ?, name = ?, email = ?, password = ?', [
                 user.id,
                 user.name,
