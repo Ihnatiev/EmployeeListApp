@@ -20,56 +20,56 @@ const employeesController = new employeeController_1.EmployeesController(mysqlCo
 const userController = new userController_1.UserController(mysqlConnection);
 exports.default = [
     {
-        path: "/api/auth/signup",
-        method: "post",
+        path: '/api/auth/signup',
+        method: 'post',
         handler: [valid_1.validateBody('new-user'), checks_1.checkUserCreate,
             (req, res) => {
                 userController.createUser(req, res);
             }]
     },
     {
-        path: "/api/auth/login",
-        method: "post",
+        path: '/api/auth/login',
+        method: 'post',
         handler: [valid_1.validateBody('user-login'), checks_1.checkUserLogin,
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 yield userController.loginUser(req, res);
             })]
     },
     {
-        path: "/api/employees",
-        method: "get",
+        path: '/api/employees',
+        method: 'get',
         handler: [valid_1.validEmpList('emp-all'),
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 yield employeesController.findAllEmployees(req, res);
             })]
     },
     {
-        path: "/api/employees/:empID",
-        method: "get",
+        path: '/api/employees/:empID',
+        method: 'get',
         handler: [valid_1.validEmpId('emp-id'),
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 yield employeesController.findEmployee(req, res);
             })]
     },
     {
-        path: "/api/employees/",
-        method: "post",
+        path: '/api/employees/',
+        method: 'post',
         handler: [valid_1.validateBody('emp-create'), check_auth_1.checkJwt,
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 yield employeesController.createEmployee(req, res);
             })]
     },
     {
-        path: "/api/employees/:empID",
-        method: "put",
+        path: '/api/employees/:empID',
+        method: 'put',
         handler: [valid_1.validateBody('emp-create'), check_auth_1.checkJwt,
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 yield employeesController.updateEmployee(req, res);
             })]
     },
     {
-        path: "/api/employees/:empID",
-        method: "delete",
+        path: '/api/employees/:empID',
+        method: 'delete',
         handler: [valid_1.validEmpId('emp-id'), check_auth_1.checkJwt,
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 yield employeesController.deleteEmployee(req, res);
