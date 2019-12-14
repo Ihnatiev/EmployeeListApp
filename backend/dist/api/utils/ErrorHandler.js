@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const httpsErrors_1 = require("./httpsErrors");
 exports.notFoundError = () => {
-    throw new httpsErrors_1.HTTPS404Error("Method not found.");
+    throw new httpsErrors_1.HTTPS404Error('Method not found.');
 };
 exports.clientError = (err, res, next) => {
     if (err instanceof httpsErrors_1.HTTPSClientError) {
         console.warn(err);
-        res.status(err.statusCode).send(err.message);
+        res.status(err.statusCode).json({ message: err.message });
     }
     else {
         next(err);
@@ -15,10 +15,10 @@ exports.clientError = (err, res, next) => {
 };
 exports.serverError = (err, res, next) => {
     console.error(err);
-    if (process.env.NODE_ENV === "production") {
-        res.status(500).send("Internal Server Error");
+    if (process.env.NODE_ENV === 'production') {
+        res.status(500).json({ message: 'Internal Server Error' });
     }
     else {
-        res.status(500).send(err.stack);
+        res.status(500).json({ message: err.stack });
     }
 };
