@@ -24,7 +24,7 @@ export class UserController {
         }).catch(err => {
           res.status(500).json({
             success: false,
-            message: 'Sorry. That username already exists. Try again.'
+            message: 'Sorry. That email already exists. Try again.'
           })
         })
     } catch {
