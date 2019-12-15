@@ -34,14 +34,14 @@ class UserController {
                 }).catch(err => {
                     res.status(500).json({
                         success: false,
-                        message: 'Invalid authentication credentials!'
+                        message: 'Sorry. That email already exists. Try again.'
                     });
                 });
             }
             catch (_a) {
                 res.status(500).json({
                     success: false,
-                    message: 'Server error'
+                    message: 'Invalid authentication credentials!'
                 });
             }
             ;
