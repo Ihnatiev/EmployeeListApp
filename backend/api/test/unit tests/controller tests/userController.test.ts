@@ -50,7 +50,7 @@ describe('Users', () => {
         userId: '87ed8836-efaf-4dcf-baaa-d94e2358fc6b'
       });
     });
-    test('should return status 500 - invalid authentication credentials', async () => {
+    test('should return status 500 - email already exists', async () => {
       const mConnection = {
         execute(query: string, params: any) { }
       };
@@ -74,7 +74,7 @@ describe('Users', () => {
       await userController.createUser(mReq, mRes);
       expect(userService.signup).toHaveBeenCalledTimes(1);
       expect(mRes.status).toBeCalledWith(500);
-      expect(mRes.status().json).toBeCalledWith({ success: false, message: 'Invalid authentication credentials!' });
+      expect(mRes.status().json).toBeCalledWith({ success: false, message: 'Sorry. That email already exists. Try again.' });
     });
   });
   describe('Login', () => {
