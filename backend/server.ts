@@ -28,7 +28,7 @@ const httpsOptions = {
   cert: fs.readFileSync('./api/config/cert.pem')
 };
 
-const { PORT = 4201 } = process.env;
+const { PORT = 4201} = process.env;
 const srvr = https.createServer(httpsOptions, app);
 
 srvr.listen(PORT, () =>
