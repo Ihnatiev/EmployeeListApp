@@ -177,7 +177,7 @@ describe("Routes", () => {
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(500)
-        .expect({ success: false, message: 'Invalid authentication credentials!' })
+        .expect({ success: false, message: 'Sorry. That email already exists. Try again.' })
     });
     test("login user - return 200", async () => {
       const userLog = {
