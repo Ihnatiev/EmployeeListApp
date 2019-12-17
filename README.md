@@ -14,9 +14,9 @@ Node provides the RESTful API. Angular provides the frontend and accesses the AP
 
 ## Servers start
 
-Run `npm run start` for a dev server of frontend. Navigate to `https://localhost:4200/`. 
-
 Run `npm run start` for a production server of backend. Start the server in backend directory.
+
+Run `npm run start` for a dev server of frontend. Navigate to `https://localhost:4200/`. 
 
 ## Run unit and integration tests
 
