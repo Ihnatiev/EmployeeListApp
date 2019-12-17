@@ -20,7 +20,7 @@ Run `npm run start` for a production server of backend. Start the server in back
 
 ## Run unit and integration tests
 
-Run `npm run test` to execute the unit tests via [Jest]
+Run `npm run test` to execute the unit tests via Jest
 
 ## Run swagger UI
 
