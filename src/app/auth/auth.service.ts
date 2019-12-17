@@ -52,8 +52,7 @@ export class AuthService {
     const authData: AuthData = { email, password };
     this.http
       .post<{ token: string; expiresIn: number; userId: string; userName: string }>(
-        'https://localhost:4201/api/auth/login',
-        authData
+        'https://localhost:4201/api/auth/login', authData
       )
       .subscribe(response => {
         const token = response.token;
