@@ -17,7 +17,7 @@ In backend directory run command `npm run dev` for build the backend project.
 Then run command `npm run start` in the same directory.
 
 After starting the server - go to the frontend.
-In frontend directory run command `npm run start` and navigate to `[https://localhost:4200/](https://localhost:4200/)`. 
+In frontend directory run command `npm run start` and navigate to [`https://localhost:4200/`](https://localhost:4200/). 
 
 ## Run unit and integration tests
 
