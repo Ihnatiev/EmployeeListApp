@@ -25,4 +25,4 @@ To run tests need to run command `npm run test` via [Jest(v24.9.0)](https://jest
 
 ## Run swagger UI
 
-Navigate to `https://localhost:4201/api-docs/`
+Navigate to [`https://localhost:4201/api-docs/`](https://localhost:4201/api-docs/)
