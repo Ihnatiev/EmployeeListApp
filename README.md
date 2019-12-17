@@ -18,10 +18,10 @@ Run `npm run start` for a dev server of frontend. Navigate to `https://localhost
 
 Run `npm run start` for a production server of backend. Start the server in backend directory.
 
-## Running unit and integration tests
+## Run unit and integration tests
 
 Run `npm run test` to execute the unit tests via [Jest]
 
-## Running swagger UI
+## Run swagger UI
 
 Navigate to `https://localhost:4201/api-docs/`
