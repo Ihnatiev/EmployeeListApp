@@ -5,22 +5,23 @@ EmployeeListApp built with [NodeJS(v10.13)](https://nodejs.org/uk/), [TypeScript
 Node provides the RESTful API. Angular provides the frontend and accesses the API. MySQL stores like a hoarder.
 
 # Requirements
- Node and npm
+ [NodeJS(v10.13)](https://nodejs.org/uk/) and [npm](https://docs.npmjs.com/)
 
 # Installation
-1. Clone the repository
+1. Clone or download the [repository](https://github.com/Ihnatiev/EmployeeListApp.git)
 2. Install node packages in root for angular: npm install
 3. Install node packages in backend directory for REST API: npm install
 
 ## Servers start
+In backend directory run command `npm run dev` for build the backend project.
+Then run command `npm run start` in the same directory.
 
-Run `npm run start` for a production server of backend. Start the server in backend directory.
-
-Run `npm run start` for a dev server of frontend. Navigate to `https://localhost:4200/`. 
+After starting the server - go to the frontend.
+In frontend directory run command `npm run start` and navigate to `https://localhost:4200/`. 
 
 ## Run unit and integration tests
 
-Run `npm run test` to execute the unit tests via Jest
+To run tests need to run command `npm run test` via [Jest(v24.9.0)](https://jestjs.io/en/).
 
 ## Run swagger UI
 
