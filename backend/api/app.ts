@@ -52,9 +52,9 @@ export class MysqlConnection extends IDBConnection {
           // tslint:disable-next-line: no-shadowed-variable
           this.pool.query(createUsersTable, (err: any, result: any) => {
             if (err) {
-              // console.log('createUsersTable error:\n' + err);
+              console.log('createUsersTable error:\n' + err);
             } else {
-              // console.log('Connected to Users');
+              console.log('Connected to Users');
             }
           });
         }
@@ -71,9 +71,9 @@ export class MysqlConnection extends IDBConnection {
           // tslint:disable-next-line: no-shadowed-variable
           this.pool.query(createDepartmentsTable, (err: any, result: any) => {
             if (err) {
-              // console.log('createDepartmentsTable error:\n' + err);
+              console.log('createDepartmentsTable error:\n' + err);
             } else {
-              // console.log('Connected to Departments');
+              console.log('Connected to Departments');
             }
           });
         }
@@ -100,9 +100,9 @@ export class MysqlConnection extends IDBConnection {
           // tslint:disable-next-line: no-shadowed-variable
           this.pool.query(createEmployeesTable, (err: any, result: any) => {
             if (err) {
-              // console.log('createEmployeesTable error:\n' + err);
+              console.log('createEmployeesTable error:\n' + err);
             } else {
-              // console.log('Connected to Employees');
+              console.log('Connected to Employees');
             }
           });
         }
