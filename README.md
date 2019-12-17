@@ -21,7 +21,7 @@ In frontend directory run command `npm run start` and navigate to [`https://loca
 
 ## Run unit and integration tests
 
-To run tests need to run command `npm run test` via [Jest(v24.9.0)](https://jestjs.io/en/).
+For run tests need to run command `npm run test` via [Jest(v24.9.0)](https://jestjs.io/en/).
 
 ## Run swagger UI
 
