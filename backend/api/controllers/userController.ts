@@ -20,56 +20,54 @@ export class UserController {
             success: true,
             message: 'User created!',
             userId: user.id
-          })
+          });
         }).catch(err => {
           res.status(500).json({
             success: false,
             message: 'Sorry. That email already exists. Try again.'
-          })
-        })
+          });
+        });
     } catch {
       res.status(500).json({
         success: false,
         message: 'Invalid authentication credentials!'
-      })
-    };
-  };
+      });
+    }
+  }
 
   public async loginUser(req: any, res: any) {
-    const email = req.body.email;
-    const password = req.body.password;
-    await this.userService.login(email)
-      .then(async user => {
-        if (!user) {
-          return res.status(400).json({
-            success: false,
-            message: 'Auth failed! Check your email.'
-          });
-        } else {
-          const result = await bcrypt.compare(password, user.password);
-          const token = jwt.sign(
-            { userId: user.id, email: user.email },
-            secret.jwtSecret, { algorithm: 'HS256', expiresIn: '1h' });
-          (!result) ?
-            res.status(401).json({
-              success: false,
-              message: 'Email and password does not match.'
-            }) :
-            res.status(200).json({
-              token: token,
-              expiresIn: 3600,
-              userId: user.id,
-              userName: user.name
-            });
-        }
-      })
-      .catch(err => {
-        res.status(500).json({
+    try {
+      const email = req.body.email;
+      const password = req.body.password;
+      const user = await this.userService.login(email);
+      if (!user) {
+        return res.status(400).json({
           success: false,
-          message: 'Server error'
+          message: 'Auth failed! Check your email.'
         });
+      } else {
+        const result = await bcrypt.compare(password, user.password);
+        const token: string = jwt.sign(
+          { userId: user.id, email: user.email },
+          secret.jwtSecret, { algorithm: 'HS256', expiresIn: '1h' });
+        (!result) ?
+          res.status(401).json({
+            success: false,
+            message: 'Email and password does not match.'
+          }) :
+          res.status(200).json({
+            token: token,
+            expiresIn: 3600,
+            userId: user.id,
+            userName: user.name
+          });
+      }
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: 'Server error'
       });
-  };
+    }
+  }
 }
-
 
