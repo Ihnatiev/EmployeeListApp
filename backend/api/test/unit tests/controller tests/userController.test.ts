@@ -60,7 +60,7 @@ describe('Users', () => {
         .mockImplementation(() => Promise.resolve());
       const mReq = {
         body: {
-          name: '',
+          name: 'Test User',
           email: 'test-email@gmail.com',
           password: 'testUserPass'
         }
