@@ -42,7 +42,7 @@ export class AuthService {
     this.http
       .post('https://localhost:4201/api/auth/signup', signUpData)
       .subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/auth/login']);
       }, error => {
         this.authStatusListener.next(false);
       });
@@ -127,11 +127,11 @@ export class AuthService {
   private getAuthData() {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
-    const userName = localStorage.getItem('userName');
     if (!token || !expirationDate) {
       return;
     }
+    const userId = localStorage.getItem('userId');
+    const userName = localStorage.getItem('userName');
     return {
       token,
       expirationDate: new Date(expirationDate),
