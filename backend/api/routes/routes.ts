@@ -4,7 +4,7 @@ import { checkUserCreate, checkUserLogin } from '../middleware/checks';
 import { EmployeesController } from '../controllers/employeeController';
 import { UserController } from '../controllers/userController';
 import { checkJwt } from '../middleware/check-auth';
-import { MysqlConnection } from '../app';
+import { MysqlConnection } from '../config/MysqlConnection';
 
 const mysqlConnection = new MysqlConnection();
 const employeesController = new EmployeesController(mysqlConnection);
