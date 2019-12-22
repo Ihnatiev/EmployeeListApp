@@ -6,19 +6,6 @@ import middleware from './api/middleware';
 import { applyMiddleware, applyRoutes } from './api/utils';
 import errorHandlers from './api/middleware/errorHandlers';
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token , Authorization'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-  );
-  next();
-});
-
 applyMiddleware(middleware, app);
 applyRoutes(routes, app);
 applyMiddleware(errorHandlers, app);
@@ -28,7 +15,7 @@ const httpsOptions = {
   cert: fs.readFileSync('./api/config/cert.pem')
 };
 
-const { PORT = 4201 } = process.env;
+const { PORT = 4222 } = process.env;
 const srvr = https.createServer(httpsOptions, app);
 
 srvr.listen(PORT, () =>
