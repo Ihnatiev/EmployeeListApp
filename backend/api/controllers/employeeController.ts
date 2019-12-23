@@ -12,21 +12,24 @@ export class EmployeesController {
     try {
       const empID = req.params.empID;
       const employee = await this.employeeService.find(empID);
-      (employee) ?
-        res.status(200).json({
+      if (employee) {
+        return res.status(200).json({
           success: true,
           employee: [employee]
-        }) :
-        res.status(404).json({
+        });
+      }
+      if (!employee) {
+        return res.status(404).json({
           success: false,
           message: 'Employee not found!'
         });
+      }
     } catch (err) {
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: 'Server error'
       });
-    };
+    }
   }
 
   async findAllEmployees(req: any, res: any) {
@@ -46,13 +49,13 @@ export class EmployeesController {
           employees: results,
           maxEmployees: totalEmployee
         });
-      };
+      }
     } catch {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: 'Server error'
       });
-    };
+    }
   }
 
   public async createEmployee(req: any, res: any) {
@@ -67,11 +70,11 @@ export class EmployeesController {
         employee: result.empID
       });
     } catch (err) {
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: 'Adding employee failed!'
       });
-    };
+    }
   }
 
   async updateEmployee(req: any, res: any) {
@@ -81,39 +84,45 @@ export class EmployeesController {
     await this.employeeService
       .update(empID, empName, empActive, empDepartment, creator)
       .then((result: any) => {
-        (result.affectedRows > 0) ?
-          res.status(200).json({
+        if (result.affectedRows > 0) {
+          return res.status(200).json({
             success: true,
             message: 'Update successfully!'
-          }) :
-          res.status(401).json({
+          });
+        }
+        if (result.affectedRows === 0) {
+          return res.status(401).json({
             success: false,
             message: 'You are not authorized!'
           });
+        }
       }).catch(err => {
-        res.status(500).json({
+        return res.status(500).json({
           success: false,
-          message: "Updating an employee failed!"
+          message: 'Updating an employee failed!'
         });
       });
   }
 
   async deleteEmployee(req: any, res: any) {
     const empID = req.params.empID;
-    const creator = req.userData.userId
+    const creator = req.userData.userId;
     await this.employeeService.delete(empID, creator)
-      .then((employee: any) => {
-        (employee.affectedRows > 0) ?
-          res.status(200).json({
+      .then((result: any) => {
+        if (result.affectedRows > 0) {
+          return res.status(200).json({
             success: true,
             message: 'Deletion successful!'
-          }) :
-          res.status(401).json({
+          });
+        }
+        if (result.affectedRows === 0) {
+          return res.status(401).json({
             success: false,
             message: 'You are not authorized!'
           });
+        }
       }).catch(err => {
-        res.status(500).json({
+        return res.status(500).json({
           success: false,
           message: 'Deleting an employee failed!'
         });
