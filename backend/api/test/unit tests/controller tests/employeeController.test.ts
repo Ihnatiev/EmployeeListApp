@@ -292,7 +292,7 @@ describe('Employees', () => {
 
       const employeeService = new EmployeesService(mConnection);
       (employeeService.delete as jest.MockedFunction<any>)
-        .mockResolvedValueOnce([]);
+        .mockResolvedValueOnce({ affectedRows: 0 });
 
       const mReq = {
         params: { empID: 1 },
