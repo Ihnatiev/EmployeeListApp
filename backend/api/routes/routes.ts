@@ -2,13 +2,15 @@ import { Request, Response } from 'express';
 import { validateBody, validEmpList, validEmpId } from '../swagger/valid';
 import { checkUserCreate, checkUserLogin } from '../middleware/checks';
 import { EmployeesController } from '../controllers/employeeController';
-import { UserController } from '../controllers/userController';
+//import { UserController } from '../controllers/userController';
+import { UserContr } from '../controllers/user';
+import { EmployeeContr } from '../controllers/employee';
 import { checkJwt } from '../middleware/check-auth';
 import { MysqlConnection } from '../config/MysqlConnection';
 
 const mysqlConnection = new MysqlConnection();
 const employeesController = new EmployeesController(mysqlConnection);
-const userController = new UserController(mysqlConnection);
+//const userController = new UserController(mysqlConnection);
 
 export default [
   {
@@ -16,15 +18,15 @@ export default [
     method: 'post',
     handler: [validateBody('new-user'), checkUserCreate,
     (req: Request, res: Response) => {
-      userController.createUser(req, res);
+      UserContr.prototype.createUser(req, res);
     }]
   },
   {
     path: '/api/auth/login',
     method: 'post',
     handler: [validateBody('user-login'), checkUserLogin,
-    async (req: Request, res: Response) => {
-      await userController.loginUser(req, res);
+    (req: Request, res: Response) => {
+      UserContr.prototype.userLogin(req, res);
     }]
   },
   {
@@ -47,9 +49,9 @@ export default [
   {
     path: '/api/employees/',
     method: 'post',
-    handler: [validateBody('emp-create'), checkJwt,
-    async (req: Request, res: Response) => {
-      await employeesController.createEmployee(req, res);
+    handler: [checkJwt,
+    (req: Request, res: Response) => {
+      EmployeeContr.prototype.create(req, res);
     }]
   },
   {
