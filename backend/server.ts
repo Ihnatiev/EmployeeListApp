@@ -16,10 +16,10 @@ const httpsOptions = {
 };
 
 const { PORT = 4201 } = process.env;
-const srvr = https.createServer(httpsOptions, app);
+const server: https.Server = https.createServer(httpsOptions, app);
 
-srvr.listen(PORT, () =>
+server.listen(PORT, () =>
   console.log(`Server is running https://localhost:${PORT}`)
 );
 
-export default srvr;
+export default server;

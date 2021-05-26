@@ -1,5 +1,6 @@
 import { UserService } from '../services/userService';
 import { IDBConnection } from '../config/IDBConnection';
+import { User } from '../models/userModel';
 import secret from '../config/secret';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
@@ -14,20 +15,21 @@ export class UserController {
   public async createUser(req: any, res: any) {
     try {
       const { name, email, password } = req.body;
+
       await this.userService.signup(name, email, password)
-        .then(user => {
+        .then((user: User) => {
           return res.status(201).json({
             success: true,
             message: 'User created!',
             userId: user.id
           });
-        }).catch(err => {
+        }).catch((err: any) => {
           return res.status(500).json({
             success: false,
             message: 'Sorry. That email already exists. Try again.'
           });
         });
-    } catch {
+    } catch (error) {
       return res.status(500).json({
         success: false,
         message: 'Invalid authentication credentials!'
@@ -37,27 +39,31 @@ export class UserController {
 
   public async loginUser(req: any, res: any) {
     try {
-      const email = req.body.email;
-      const password = req.body.password;
-      const user = await this.userService.login(email);
+      const email: string = req.body.email;
+      const password: string = req.body.password;
+      const user: User = await this.userService.login(email);
+
       if (!user) {
         return res.status(400).json({
           success: false,
           message: 'Auth failed! Check your email.'
         });
       }
+
       if (user) {
-        const result = await bcrypt.compare(password, user.password);
+        const result: boolean = await bcrypt.compare(password, user.password);
         if (!result) {
           return res.status(401).json({
             success: false,
             message: 'Email and password does not match.'
           });
         }
+
         if (result) {
           const token: string = jwt.sign(
             { userId: user.id, email: user.email },
             secret.jwtSecret, { algorithm: 'HS256', expiresIn: '1h' });
+
           return res.status(200).json({
             token,
             expiresIn: 3600,
@@ -74,4 +80,3 @@ export class UserController {
     }
   }
 }
-

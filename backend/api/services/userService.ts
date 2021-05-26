@@ -11,13 +11,13 @@ export class UserService {
   };
 
   async signup(name: string, email: string, password: string): Promise<User> {
-    const user = new User();
+    const user: User = new User();
     user.id = uuid();
     user.name = name;
     user.email = email;
     user.password = bcrypt.hashSync(password, 10);
     await this.connection.execute(
-      'INSERT INTO EmployeeDB.Users SET id = ?, name = ?, email = ?, password = ?',
+      `INSERT INTO EmployeeDB.Users SET id = ?, name = ?, email = ?, password = ?`,
       [
         user.id,
         user.name,
@@ -29,8 +29,9 @@ export class UserService {
   }
 
   async login(email: string): Promise<User> {
-    const queryResults = await this.connection.execute(
-      'SELECT * FROM EmployeeDB.Users WHERE email = ?', [email]);
+    const queryResults: any = await this.connection.execute(
+      `SELECT * FROM EmployeeDB.Users WHERE email = ?`, [email]);
+
     return queryResults[0];
   }
 }

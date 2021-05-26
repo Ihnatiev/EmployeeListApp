@@ -2,31 +2,29 @@ import { Request, Response } from 'express';
 import { validateBody, validEmpList, validEmpId } from '../swagger/valid';
 import { checkUserCreate, checkUserLogin } from '../middleware/checks';
 import { EmployeesController } from '../controllers/employeeController';
-//import { UserController } from '../controllers/userController';
-import { UserContr } from '../controllers/user';
-import { EmployeeContr } from '../controllers/employee';
+import { UserController } from '../controllers/userController';
 import { checkJwt } from '../middleware/check-auth';
 import { MysqlConnection } from '../config/MysqlConnection';
 
-const mysqlConnection = new MysqlConnection();
-const employeesController = new EmployeesController(mysqlConnection);
-//const userController = new UserController(mysqlConnection);
+const mysqlConnection: MysqlConnection = new MysqlConnection();
+const employeesController: EmployeesController = new EmployeesController(mysqlConnection);
+const userController: UserController = new UserController(mysqlConnection);
 
 export default [
   {
     path: '/api/auth/signup',
     method: 'post',
     handler: [validateBody('new-user'), checkUserCreate,
-    (req: Request, res: Response) => {
-      UserContr.prototype.createUser(req, res);
+    async (req: Request, res: Response) => {
+      await userController.createUser(req, res);
     }]
   },
   {
     path: '/api/auth/login',
     method: 'post',
     handler: [validateBody('user-login'), checkUserLogin,
-    (req: Request, res: Response) => {
-      UserContr.prototype.userLogin(req, res);
+    async (req: Request, res: Response) => {
+      await userController.loginUser(req, res);
     }]
   },
   {
@@ -50,8 +48,8 @@ export default [
     path: '/api/employees/',
     method: 'post',
     handler: [checkJwt,
-    (req: Request, res: Response) => {
-      EmployeeContr.prototype.create(req, res);
+    async (req: Request, res: Response) => {
+      await employeesController.createEmployee(req, res);
     }]
   },
   {

@@ -1,45 +1,45 @@
 export class User {
-  private _id: string;
-  private _name: string;
-  private _email: string;
-  private _password: string;
+  private userId: string;
+  private userName: string;
+  private userEmail: string;
+  private userPassword: string;
 
   get id(): string {
-    return this._id;
+    return this.userId;
   }
 
   set id(id: string) {
-    this._id = id;
+    this.userId = id;
   }
 
   get name(): string {
-    return this._name;
+    return this.userName;
   }
 
   set name(name: string) {
-    this._name = name;
+    this.userName = name;
   }
 
   get email(): string {
-    return this._email;
+    return this.userEmail;
   }
 
   set email(email: string) {
-    this._email = email;
+    this.userEmail = email;
   }
 
   get password(): string {
-    return this._password;
+    return this.userPassword;
   }
 
   set password(password: string) {
-    this._password = password;
+    this.userPassword = password;
   }
 
   constructor(id: string = '', name: string = '', email: string = '', password: string = '') {
-    this._id = id;
-    this._name = name;
-    this._email = email;
-    this._password = password;
+    this.userId = id;
+    this.userName = name;
+    this.userEmail = email;
+    this.userPassword = password;
   }
 }
